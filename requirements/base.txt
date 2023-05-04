@@ -1,0 +1,12 @@
+Django==4.2
+environs[django]==9.5.0
+django-jazzmin==2.6.0
+django-recaptcha==3.0.0
+djangorestframework==3.14.0
+drf-yasg==1.21.5
+djangorestframework_simplejwt==5.2.2
+psycopg2-binary==2.9.6
+django-phonenumber-field==7.0.2
+phonenumbers==8.13.9
+sorl-thumbnail==12.9.0
+Pillow==9.5.0
