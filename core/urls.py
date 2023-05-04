@@ -31,6 +31,7 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),  # for browsable api
     path("", include("apps.urls")),  # entry point to other project app urls
     path("sentry-debug/", trigger_error),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
 
 urlpatterns += swagger_urlpatterns

@@ -55,6 +55,8 @@ THIRD_PARTY_APPS = [
     # "corsheaders",  # cors headers
     "rest_framework_simplejwt",  # JWT Authentication
     "sorl.thumbnail",  # for image compressing
+    "ckeditor",
+    "ckeditor_uploader",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
@@ -197,3 +199,6 @@ sentry_sdk.init(
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True,
 )
+
+# ckeditor
+CKEDITOR_UPLOAD_PATH = "uploads/"

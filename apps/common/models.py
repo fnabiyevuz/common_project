@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -9,3 +10,10 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+# usage of ckeditor
+
+
+class Post(models.Model):
+    content = RichTextField()
