@@ -2,7 +2,9 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+import sentry_sdk
 from environs import Env
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from core.jazzmin_conf import *  # noqa
 
@@ -87,7 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -128,7 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -139,7 +139,6 @@ TIME_ZONE = "Asia/Tashkent"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -184,3 +183,17 @@ SIMPLE_JWT = {
 # ##########################   reCAPTCHA   #############################
 RECAPTCHA_PUBLIC_KEY = env.str("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env.str("RECAPTCHA_PRIVATE_KEY")
+
+sentry_sdk.init(
+    dsn="https://2692c7f92b7144299498e02d8a5e3076@o4505127614873600.ingest.sentry.io/4505127617429504",
+    integrations=[
+        DjangoIntegration(),
+    ],
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True,
+)

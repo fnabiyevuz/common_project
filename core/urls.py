@@ -9,6 +9,10 @@ from django.urls import include, path
 from .schema import swagger_urlpatterns
 
 
+def trigger_error(request):
+    division_by_zero = 1 / 0  # noqa
+
+
 class LoginForm(AuthenticationForm):
     captcha = fields.ReCaptchaField()
 
@@ -22,11 +26,11 @@ class LoginForm(AuthenticationForm):
 admin.site.login_form = LoginForm
 admin.site.login_template = "login.html"
 
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),  # for browsable api
     path("", include("apps.urls")),  # entry point to other project app urls
+    path("sentry-debug/", trigger_error),
 ]
 
 urlpatterns += swagger_urlpatterns
